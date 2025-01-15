@@ -32,10 +32,15 @@ if(title == '' || author == '' || isbn == ''){
     isbnField.value = '';
 
 
-    bookList.addEventListener('click', (e)=>{
-        if(e.target.classList.contains('delete')){
-            const row = e.target.parentElement.parentElement;
-            bookList.removeChild(row);
+    document.querySelector('#book-list').addEventListener('click', (e) => {
+        if (e.target.classList.contains('delete')) {
+            const row = e.target.closest('tr');
+            if (row) {
+                row.remove();
+            } else {
+                console.error('Row not found or already removed');
+            }
         }
-    })
+    });
+    
 })
